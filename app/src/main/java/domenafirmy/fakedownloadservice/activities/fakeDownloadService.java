@@ -27,6 +27,10 @@ public class fakeDownloadService extends Service{
 
         private Service service;
 
+        public DownloadAsyncTask(Service service) {
+            this.service = service;
+        }
+
         @Override
         protected Void doInBackground(Long... params) {
 
