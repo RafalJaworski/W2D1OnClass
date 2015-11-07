@@ -1,7 +1,9 @@
-package domenafirmy.fakedownloadservice;
+package domenafirmy.fakedownloadservice.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import domenafirmy.fakedownloadservice.R;
 
 public class MainActivity extends AppCompatActivity {
 
