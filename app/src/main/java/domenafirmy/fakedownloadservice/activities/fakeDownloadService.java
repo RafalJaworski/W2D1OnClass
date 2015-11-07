@@ -3,6 +3,7 @@ package domenafirmy.fakedownloadservice.activities;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
@@ -20,5 +21,14 @@ public class fakeDownloadService extends Service{
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    public static class DownloadAsyncTask extends AsyncTask<Long,Void,Void>{
+
+
+        @Override
+        protected Void doInBackground(Long... params) {
+            return null;
+        }
     }
 }
