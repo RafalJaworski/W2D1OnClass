@@ -28,6 +28,11 @@ public class fakeDownloadService extends Service{
         return Service.START_REDELIVER_INTENT;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
