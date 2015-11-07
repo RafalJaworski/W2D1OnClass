@@ -7,10 +7,14 @@ import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import java.util.Random;
+
 /**
  * Created by jawa on 07/11/2015.
  */
 public class fakeDownloadService extends Service{
+
+    private Random randomGenerator; //objekt generujacyliczby losowe
 
     @Override
     public void onCreate() {
