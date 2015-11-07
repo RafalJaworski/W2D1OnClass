@@ -13,6 +13,11 @@ import android.support.annotation.Nullable;
 public class fakeDownloadService extends Service{
 
     @Override
+    public void onCreate() {
+        super.onCreate();
+    }
+
+    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         return Service.START_REDELIVER_INTENT;
     }
@@ -26,6 +31,7 @@ public class fakeDownloadService extends Service{
     public static class DownloadAsyncTask extends AsyncTask<Long,Void,Void>{
 
         private Service service;
+
 
         public DownloadAsyncTask(Service service) {
             this.service = service;
