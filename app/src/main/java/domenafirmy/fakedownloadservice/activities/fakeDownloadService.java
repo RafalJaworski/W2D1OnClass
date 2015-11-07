@@ -28,6 +28,12 @@ public class fakeDownloadService extends Service{
 
         @Override
         protected Void doInBackground(Long... params) {
+
+            try {
+                Thread.sleep(params[0]);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             return null;
         }
     }
