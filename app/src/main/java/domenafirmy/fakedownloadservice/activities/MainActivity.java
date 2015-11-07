@@ -23,4 +23,11 @@ public class MainActivity extends AppCompatActivity {
         Intent startIntent = new Intent(this,fakeDownloadService.class);
         this.startService(startIntent);
     }
+
+    @OnClick(R.id.download_stop)
+    public void onStopClick()
+    {
+        Intent startIntent = new Intent(this,fakeDownloadService.class);
+        this.stopService(startIntent);
+    }
 }
