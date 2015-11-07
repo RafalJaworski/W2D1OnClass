@@ -25,11 +25,14 @@ public class fakeDownloadService extends Service{
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d("Service","onStartCommand");
+        new DownloadAsyncTask(this).execute(randomGenerator.nextInt(10)*1000L);//1000L - liczba long
         return Service.START_REDELIVER_INTENT;
     }
 
     @Override
     public void onDestroy() {
+        Log.d("Service","onStartCommand");
         super.onDestroy();
     }
 
@@ -50,7 +53,7 @@ public class fakeDownloadService extends Service{
 
         @Override
         protected Void doInBackground(Long... params) {
-
+            Log.d("AsyncTask","doInBackground");
             try {
                 Thread.sleep(params[0]);
             } catch (InterruptedException e) {
@@ -62,7 +65,9 @@ public class fakeDownloadService extends Service{
 
         @Override
         protected void onPostExecute(Void aVoid) {
+            Log.d("AsyncTask","doInBackground");
             super.onPostExecute(aVoid);
+            service.stopSelf();
         }
     }
 }
