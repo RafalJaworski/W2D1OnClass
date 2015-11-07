@@ -36,5 +36,11 @@ public class fakeDownloadService extends Service{
             }
             return null;
         }
+
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
     }
 }
