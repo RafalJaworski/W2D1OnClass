@@ -32,7 +32,7 @@ public class fakeDownloadService extends Service{
 
     @Override
     public void onDestroy() {
-        Log.d("Service","onStartCommand");
+        Log.d("Service","onDestroy");
         super.onDestroy();
     }
 
@@ -65,7 +65,7 @@ public class fakeDownloadService extends Service{
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            Log.d("AsyncTask","doInBackground");
+            Log.d("AsyncTask","onPostExecute");
             super.onPostExecute(aVoid);
             service.stopSelf();
         }
