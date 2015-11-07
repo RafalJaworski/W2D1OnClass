@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import java.util.Random;
 
@@ -19,6 +20,7 @@ public class fakeDownloadService extends Service{
     @Override
     public void onCreate() {
         super.onCreate();
+        randomGenerator = new Random();
     }
 
     @Override
