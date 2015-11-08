@@ -7,6 +7,7 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import butterknife.Bind;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements fakeDownloadServi
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             binder = (fakeDownloadService.ServiceBinder) service;
-
+            Log.d("Main", "onServiceConnected");
             //odczytanie bierzacej liczby zadan
             state.setText(Integer.toString(binder.getPendingTasksCount()));
             //ustawia klase obserwujaca zmiany w binder
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements fakeDownloadServi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
+        Log.d("Main", "onCreate");
         //podlaczanie do servisu
         final Intent bindIntent = new Intent(this,fakeDownloadService.class);
         bindService(bindIntent,serviceConnection , Service.BIND_AUTO_CREATE);
@@ -59,14 +60,14 @@ public class MainActivity extends AppCompatActivity implements fakeDownloadServi
     public void onStartClick()
     {
         Intent startIntent = new Intent(this,fakeDownloadService.class);
-        this.startService(startIntent);
+        startService(startIntent);
     }
 
     @OnClick(R.id.download_stop)
     public void onStopClick()
     {
         Intent startIntent = new Intent(this,fakeDownloadService.class);
-        this.stopService(startIntent);
+       stopService(startIntent);
     }
 
     @Override

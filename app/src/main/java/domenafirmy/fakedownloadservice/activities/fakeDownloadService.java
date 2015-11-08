@@ -11,7 +11,6 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -41,12 +40,15 @@ public class fakeDownloadService extends Service{
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("Service", "onStartCommand");
         //jesli binder instnieje to powiadom go o zmianie
+        DownloadAsyncTask newTask = new DownloadAsyncTask(this,startId);
+        runningTask.add(newTask);
         if(null != currentBinder){
+            Log.d("Service", "XXXXXX");
             currentBinder.notifyObserver();
         }
-        DownloadAsyncTask newTask = new DownloadAsyncTask(this,startId);
+
         //dodajemy nowe zadanie do listy
-        runningTask.add(newTask);
+
         newTask.executeOnExecutor(threadPool,randomGenerator.nextInt(10)*1000L);
 
         return Service.START_REDELIVER_INTENT;
@@ -69,7 +71,7 @@ public class fakeDownloadService extends Service{
     public IBinder onBind(Intent intent) {
         if(null == currentBinder){
             currentBinder = new ServiceBinder(this);
-            return new ServiceBinder(this);
+            return currentBinder;
         }
         //null - nie pozwalamy innym sie podlaczyc
         return null;
@@ -131,12 +133,14 @@ public class fakeDownloadService extends Service{
         }
 
         public void setObserver(BinderToActivityConnection observer) {
+            Log.d("Service", "EEEEEEE");
             this.observer = observer;
         }
 
         public void notifyObserver()
         {
             if(null != observer){
+                Log.d("Service", "notifyObserver");
                 observer.onTasksRefresh();
             }
         }
