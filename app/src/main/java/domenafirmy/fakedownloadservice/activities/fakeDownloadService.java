@@ -72,6 +72,13 @@ public class fakeDownloadService extends Service{
         return null;
     }
 
+    @Override
+    public boolean onUnbind(Intent intent) {
+        currentBinder = null;
+        //false zeby nie mogla byc wywolana metoda rebind
+        return false;
+    }
+
     public static class DownloadAsyncTask extends AsyncTask<Long,Void,Void>{
         //w Service nie ma listy runningTask wiec typujemy na nasz servis
         private fakeDownloadService service;
