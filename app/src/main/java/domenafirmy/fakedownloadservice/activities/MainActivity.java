@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import domenafirmy.fakedownloadservice.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements fakeDownloadService.BinderToActivityConnection {
 
     @Bind(R.id.state)
     protected TextView state;
@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
             //odczytanie bierzacej liczby zadan
             state.setText(Integer.toString(binder.getPendingTasksCount()));
+            //ustawia klase obserwujaca zmiany w binder
+            binder.setObserver(MainActivity.this);
         }
 
         @Override
@@ -65,5 +67,10 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent startIntent = new Intent(this,fakeDownloadService.class);
         this.stopService(startIntent);
+    }
+
+    @Override
+    public void onTasksRefresh() {
+        state.setText(Integer.toString(binder.getPendingTasksCount()));
     }
 }
