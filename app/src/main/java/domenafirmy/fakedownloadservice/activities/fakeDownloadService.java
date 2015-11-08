@@ -25,6 +25,8 @@ public class fakeDownloadService extends Service{
 
     private Random randomGenerator; //objekt generujacyliczby losowe
 
+    private ServiceBinder currentBinder;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -62,7 +64,12 @@ public class fakeDownloadService extends Service{
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return new ServiceBinder(this);
+        if(null == currentBinder){
+            currentBinder = new ServiceBinder(this);
+            return new ServiceBinder(this);
+        }
+        //null - nie pozwalamy innym sie podlaczyc
+        return null;
     }
 
     public static class DownloadAsyncTask extends AsyncTask<Long,Void,Void>{
