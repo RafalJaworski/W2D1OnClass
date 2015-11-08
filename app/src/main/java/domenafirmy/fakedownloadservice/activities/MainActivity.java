@@ -42,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
         }, Service.BIND_AUTO_CREATE);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
     @OnClick(R.id.download_start)
     public void onStartClick()
     {
