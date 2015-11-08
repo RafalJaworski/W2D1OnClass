@@ -80,7 +80,7 @@ public class fakeDownloadService extends Service{
             try {
                 Thread.sleep(params[0]);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Log.d("AsyncTask","InterruptedException");
             }
             return null;
         }
