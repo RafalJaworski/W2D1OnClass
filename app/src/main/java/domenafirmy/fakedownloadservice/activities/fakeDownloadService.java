@@ -108,6 +108,10 @@ public class fakeDownloadService extends Service{
         public int getPendingTasksCount(){
             return this.service.runningTask.size();
         }
+
+        public void setObserver(BinderToActivityConnection observer) {
+            this.observer = observer;
+        }
     }
 
     public interface BinderToActivityConnection
