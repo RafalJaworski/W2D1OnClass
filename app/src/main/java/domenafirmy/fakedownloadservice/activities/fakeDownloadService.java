@@ -15,6 +15,8 @@ import java.util.Random;
  */
 public class fakeDownloadService extends Service{
 
+    private DownloadAsyncTask CurrentTask;
+
     private Random randomGenerator; //objekt generujacyliczby losowe
 
     @Override
