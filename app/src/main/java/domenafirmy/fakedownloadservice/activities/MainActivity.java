@@ -21,6 +21,18 @@ public class MainActivity extends AppCompatActivity {
 
     protected fakeDownloadService.ServiceBinder binder;
 
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            binder = (fakeDownloadService.ServiceBinder) service;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            binder = null;
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,22 +41,13 @@ public class MainActivity extends AppCompatActivity {
 
         //podlaczanie do servisu
         final Intent bindIntent = new Intent(this,fakeDownloadService.class);
-        bindService(bindIntent, new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName name, IBinder service) {
-                binder = (fakeDownloadService.ServiceBinder) service;
-            }
-
-            @Override
-            public void onServiceDisconnected(ComponentName name) {
-                binder = null;
-            }
-        }, Service.BIND_AUTO_CREATE);
+        bindService(bindIntent,serviceConnection , Service.BIND_AUTO_CREATE);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        unbindService(serviceConnection);
     }
 
     @OnClick(R.id.download_start)
