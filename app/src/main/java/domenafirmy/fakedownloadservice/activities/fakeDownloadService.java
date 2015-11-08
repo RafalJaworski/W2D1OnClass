@@ -110,6 +110,9 @@ public class fakeDownloadService extends Service{
             Log.d("AsyncTask","onPostExecute"+startId);
             super.onPostExecute(aVoid);
             service.runningTask.remove(this);
+            if(null != service.currentBinder){
+                service.currentBinder.notifyObserver();
+            }
             //stopself moze przyjmowac int startId
             service.stopSelf(startId);
         }
