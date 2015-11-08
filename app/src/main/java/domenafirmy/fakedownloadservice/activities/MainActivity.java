@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.state)
     protected TextView state;
 
+    protected fakeDownloadService.ServiceBinder binder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
