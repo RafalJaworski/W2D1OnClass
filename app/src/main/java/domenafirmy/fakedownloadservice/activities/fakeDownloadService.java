@@ -98,6 +98,8 @@ public class fakeDownloadService extends Service{
     }
 
     public static class ServiceBinder extends Binder{
-
+        public int getPendingTasksCount(){
+            return 0;
+        }
     }
 }
