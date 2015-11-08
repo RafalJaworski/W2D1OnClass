@@ -54,22 +54,21 @@ public class fakeDownloadService extends Service{
     }
 
     public static class DownloadAsyncTask extends AsyncTask<Long,Void,Void>{
-
-        private Service service;
+        //w Service nie ma listy runningTask wiec typujemy na nasz servis
+        private fakeDownloadService service;
         private int startId;
 
-        public DownloadAsyncTask(Service service,int startId) {
+        public DownloadAsyncTask(fakeDownloadService service,int startId) {
             this.service = service;
             this.startId = startId;
         }
 
         @Override
         protected Void doInBackground(Long... params) {
-
+            Log.d("AsyncTask","doInBackground");
             try {
                 Thread.sleep(params[0]);
             } catch (InterruptedException e) {
-                Log.d("AsyncTask","doInBackground");
                 e.printStackTrace();
             }
             return null;
@@ -80,6 +79,7 @@ public class fakeDownloadService extends Service{
         protected void onPostExecute(Void aVoid) {
             Log.d("AsyncTask","onPostExecute");
             super.onPostExecute(aVoid);
+            service.runningTask.remove(this);
             //stopself moze przyjmowac int startId
             service.stopSelf(startId);
         }
