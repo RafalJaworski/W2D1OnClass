@@ -20,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        //podlaczanie do servisu
+        Intent bindIntent = new Intent(this,fakeDownloadService.class);
     }
 
     @OnClick(R.id.download_start)
