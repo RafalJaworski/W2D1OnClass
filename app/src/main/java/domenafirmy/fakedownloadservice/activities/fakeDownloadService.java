@@ -74,6 +74,7 @@ public class fakeDownloadService extends Service{
 
     @Override
     public boolean onUnbind(Intent intent) {
+        //czyscimy bierzacy binder poniewaz klient sie rozlaczyl
         currentBinder = null;
         //false zeby nie mogla byc wywolana metoda rebind
         return false;
@@ -125,6 +126,13 @@ public class fakeDownloadService extends Service{
 
         public void setObserver(BinderToActivityConnection observer) {
             this.observer = observer;
+        }
+
+        public void notifyObserver()
+        {
+            if(null != observer){
+                observer.onTasksRefresh();
+            }
         }
     }
 
