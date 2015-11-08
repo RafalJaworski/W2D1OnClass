@@ -10,12 +10,17 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class fakeDownloadService extends Service{
 
     //urzywamy listy bo bedziemy mieli przy okazji kolejnosc
     private List<DownloadAsyncTask> runningTask;
+    //pula watkow
+    private ExecutorService threadPool;
 
     private Random randomGenerator; //objekt generujacyliczby losowe
 
@@ -25,6 +30,8 @@ public class fakeDownloadService extends Service{
         Log.d("Service", "onCreate");
         randomGenerator = new Random();
         runningTask = new ArrayList<>();
+        //tworzymy pule watkow skladajacych sie zawsze z 2 watkow
+        threadPool = Executors.newFixedThreadPool(2);
     }
 
     @Override
