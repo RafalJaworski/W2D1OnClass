@@ -99,6 +99,7 @@ public class fakeDownloadService extends Service{
 
     public static class ServiceBinder extends Binder{
         private fakeDownloadService service;
+        private BinderToActivityConnection observer;
 
         public ServiceBinder(fakeDownloadService service) {
             this.service = service;
