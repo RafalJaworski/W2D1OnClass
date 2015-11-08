@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             binder = (fakeDownloadService.ServiceBinder) service;
+
+            //odczytanie bierzacej liczby zadan
+            state.setText(Integer.toString(binder.getPendingTasksCount()));
         }
 
         @Override
