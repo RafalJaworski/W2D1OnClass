@@ -22,6 +22,7 @@ public class fakeDownloadService extends Service{
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.d("Service", "onCreate");
         randomGenerator = new Random();
     }
 
@@ -66,10 +67,11 @@ public class fakeDownloadService extends Service{
 
         @Override
         protected Void doInBackground(Long... params) {
-            Log.d("AsyncTask","doInBackground");
+
             try {
                 Thread.sleep(params[0]);
             } catch (InterruptedException e) {
+                Log.d("AsyncTask","doInBackground");
                 e.printStackTrace();
             }
             return null;
