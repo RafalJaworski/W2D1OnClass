@@ -41,8 +41,7 @@ public class fakeDownloadService extends Service{
         DownloadAsyncTask newTask = new DownloadAsyncTask(this,startId);
         //dodajemy nowe zadanie do listy
         runningTask.add(newTask);
-        //wpisuje startId i wybieram wrap bo potrzebny jest long
-        newTask.execute(randomGenerator.nextInt(10)*1000L);
+        newTask.executeOnExecutor(threadPool,randomGenerator.nextInt(10)*1000L);
 
         return Service.START_REDELIVER_INTENT;
     }
