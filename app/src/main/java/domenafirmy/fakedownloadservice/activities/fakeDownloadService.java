@@ -10,9 +10,7 @@ import android.util.Log;
 
 import java.util.Random;
 
-/**
- * Created by jawa on 07/11/2015.
- */
+
 public class fakeDownloadService extends Service{
 
     private DownloadAsyncTask currentTask;
