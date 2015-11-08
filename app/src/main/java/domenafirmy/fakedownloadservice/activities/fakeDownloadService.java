@@ -50,7 +50,12 @@ public class fakeDownloadService extends Service{
     public void onDestroy() {
         Log.d("Service", "onDestroy");
         super.onDestroy();
-
+        for(DownloadAsyncTask i: runningTask ) {
+            i.cancel(true);
+            i.service = null;
+        }
+        //zamknieci puli watkow
+        threadPool.shutdown();
     }
 
     @Nullable
