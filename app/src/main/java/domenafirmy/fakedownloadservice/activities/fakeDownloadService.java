@@ -108,4 +108,9 @@ public class fakeDownloadService extends Service{
             return this.service.runningTask.size();
         }
     }
+
+    public interface BinderToActivityConnection
+    {
+        public void onTasksRefresh();
+    }
 }
