@@ -3,12 +3,17 @@ package domenafirmy.fakedownloadservice.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import domenafirmy.fakedownloadservice.R;
 
 public class MainActivity extends AppCompatActivity {
+
+    @Bind(R.id.state)
+    protected TextView state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
