@@ -40,7 +40,10 @@ public class fakeDownloadService extends Service{
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("Service", "onStartCommand");
-
+        //jesli binder instnieje to powiadom go o zmianie
+        if(null != currentBinder){
+            currentBinder.notifyObserver();
+        }
         DownloadAsyncTask newTask = new DownloadAsyncTask(this,startId);
         //dodajemy nowe zadanie do listy
         runningTask.add(newTask);
