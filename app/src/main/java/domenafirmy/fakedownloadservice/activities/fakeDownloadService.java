@@ -105,7 +105,7 @@ public class fakeDownloadService extends Service{
         }
 
         public int getPendingTasksCount(){
-            return 0;
+            return this.service.runningTask.size();
         }
     }
 }
