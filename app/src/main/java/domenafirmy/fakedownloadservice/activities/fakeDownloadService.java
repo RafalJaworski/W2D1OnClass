@@ -15,7 +15,7 @@ import java.util.Random;
  */
 public class fakeDownloadService extends Service{
 
-    private DownloadAsyncTask CurrentTask;
+    private DownloadAsyncTask currentTask;
 
     private Random randomGenerator; //objekt generujacyliczby losowe
 
@@ -29,9 +29,9 @@ public class fakeDownloadService extends Service{
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("Service", "onStartCommand");
 
-        if(null == CurrentTask){
-            CurrentTask = new DownloadAsyncTask(this);
-            CurrentTask.execute(randomGenerator.nextInt(10)*1000L);//1000L - liczba long
+        if(null == currentTask){
+            currentTask = new DownloadAsyncTask(this);
+            currentTask.execute(randomGenerator.nextInt(10)*1000L);//1000L - liczba long
         }
 
         return Service.START_REDELIVER_INTENT;
@@ -39,8 +39,11 @@ public class fakeDownloadService extends Service{
 
     @Override
     public void onDestroy() {
-        Log.d("Service","onDestroy");
+        Log.d("Service", "onDestroy");
         super.onDestroy();
+        if(null!=currentTask){
+            currentTask.cancel(true);
+        }
     }
 
     @Nullable
