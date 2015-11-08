@@ -43,6 +43,9 @@ public class fakeDownloadService extends Service{
         super.onDestroy();
         if(null!=currentTask){
             currentTask.cancel(true);
+            currentTask.service = null;
+            currentTask = null;
+
         }
     }
 
