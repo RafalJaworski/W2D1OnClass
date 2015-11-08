@@ -3,6 +3,7 @@ package domenafirmy.fakedownloadservice.activities;
 import android.app.Service;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -94,5 +95,9 @@ public class fakeDownloadService extends Service{
             //stopself moze przyjmowac int startId
             service.stopSelf(startId);
         }
+    }
+
+    public static class ServiceBinder extends Binder{
+
     }
 }
