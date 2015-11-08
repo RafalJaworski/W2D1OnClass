@@ -28,16 +28,16 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         //podlaczanie do servisu
-        Intent bindIntent = new Intent(this,fakeDownloadService.class);
+        final Intent bindIntent = new Intent(this,fakeDownloadService.class);
         bindService(bindIntent, new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
-
+                binder = (fakeDownloadService.ServiceBinder) service;
             }
 
             @Override
             public void onServiceDisconnected(ComponentName name) {
-
+                binder = null;
             }
         }, Service.BIND_AUTO_CREATE);
     }
