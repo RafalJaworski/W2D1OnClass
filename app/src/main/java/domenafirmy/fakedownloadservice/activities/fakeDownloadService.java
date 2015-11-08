@@ -28,7 +28,8 @@ public class fakeDownloadService extends Service{
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("Service","onStartCommand");
-        new DownloadAsyncTask(this).execute(randomGenerator.nextInt(10)*1000L);//1000L - liczba long
+        CurrentTask = new DownloadAsyncTask(this);
+        CurrentTask.execute(randomGenerator.nextInt(10)*1000L);//1000L - liczba long
         return Service.START_REDELIVER_INTENT;
     }
 
