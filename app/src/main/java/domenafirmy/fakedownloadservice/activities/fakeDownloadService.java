@@ -71,7 +71,7 @@ public class fakeDownloadService extends Service{
 
         @Override
         protected Void doInBackground(Long... params) {
-            Log.d("AsyncTask","doInBackground");
+            Log.d("AsyncTask","doInBackground"+startId+"thread="+Thread.currentThread().getId());
             try {
                 Thread.sleep(params[0]);
             } catch (InterruptedException e) {
@@ -83,7 +83,7 @@ public class fakeDownloadService extends Service{
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            Log.d("AsyncTask","onPostExecute");
+            Log.d("AsyncTask","onPostExecute"+startId);
             super.onPostExecute(aVoid);
             service.runningTask.remove(this);
             //stopself moze przyjmowac int startId
